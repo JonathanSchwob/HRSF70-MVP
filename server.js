@@ -26,10 +26,10 @@ var postSchema = new Schema(
 );
 
 //compile schema into model
-var PostModel = mongoose.model('Post', postSchema);
+var post = mongoose.model('Post', postSchema);
 
 app.use(express.static(__dirname));
 app.listen(4000, console.log('listening on port 4000'));
 
 exports.db = db;
-exports.PostModel = PostModel;
+exports.post = post;

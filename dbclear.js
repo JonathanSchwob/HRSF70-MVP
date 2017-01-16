@@ -1,9 +1,10 @@
 var db = require('./server.js');
 var database = db.db;
-var PostModel = db.PostModel;
+var post = db.post;
 
 //drop previous table
-database.collections['PostModel'].drop(function(err) {
+console.log(database.collections);
+database.collections['posts'].drop(function(err) {
   if (err) {
     console.log('error dropping table');
   } else {
@@ -20,7 +21,7 @@ var posts = [
 
 //populate db
 for (var i = 0; i < posts.length; i++) {
-  PostModel.create(posts[i], function(error, doc) {
+  post.create(posts[i], function(error, doc) {
     if (error) {
       console.log('errored on populating starter posts: ', error);
     } else {
