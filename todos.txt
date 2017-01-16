@@ -1,0 +1,7 @@
+Next up:
+put the static data on the server.
+
+
+
+Stretch goals:
+- add link fixer functionality
