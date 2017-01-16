@@ -13,7 +13,7 @@ var Schema = mongoose.Schema;
 //listen for db connection success or error
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
-  console.log('we are connected');
+  console.log('we are connected to mongoose');
 });
 
 //create schema design
@@ -26,10 +26,20 @@ var postSchema = new Schema(
 );
 
 //compile schema into model
-var post = mongoose.model('Post', postSchema);
+var Post = mongoose.model('Post', postSchema);
 
 app.use(express.static(__dirname));
+app.use(bodyParser.json());
+
+app.get('/posts', (req, res) => {
+  Post.find((err, posts) => {
+    if (err) { return err; }
+    res.send(posts);
+    res.end();
+  });
+});
+
 app.listen(4000, console.log('listening on port 4000'));
 
 exports.db = db;
-exports.post = post;
+exports.post = Post;

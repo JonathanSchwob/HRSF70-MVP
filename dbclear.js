@@ -3,7 +3,6 @@ var database = db.db;
 var post = db.post;
 
 //drop previous table
-console.log(database.collections);
 database.collections['posts'].drop(function(err) {
   if (err) {
     console.log('error dropping table');

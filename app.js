@@ -1,11 +1,15 @@
 var app = angular.module('reactorNews', []);
 
-app.controller('MainController', ($scope) => {
-  // $scope.posts = [
-  //   {title: 'Hack Reactor awards $1.3 million in scholarship funds', upvotes: 5},
-  //   {title: 'Makersquare brand changes to Hack Reactor', upvotes: 6},
-  //   {title: 'Font ligatures, helpful or annoying?', upvotes: -3},
-  // ];
+app.controller('MainController', ($scope, $http) => {
+  $scope.posts = [];
+
+  $http.get('/posts').then((res) => {
+    $scope.posts = res.data;
+  }, function(err) {
+    if (err) {
+      console.log('this is the err on $http get: ', err);
+    }
+  });
   
   $scope.addPost = () => {
     if (!$scope.title || $scope.title === '') {
