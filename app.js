@@ -28,7 +28,6 @@ app.controller('MainController', ($scope, $http) => {
     //give new post to db
     $http.post('/posts', postContents).then(function(res) {
       console.log('done posting the post, here it is: ', res);
-      
     }, function(err) {
       if (err) {
         console.log('could not post, here is err: ', err);

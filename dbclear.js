@@ -19,12 +19,12 @@ var posts = [
     link: 'http://www.hackreactor.com/scholarships/'
   },
   {
-    title: 'Makersquare brand changes to Hack Reactor', 
+    title: 'Makersquare brand shifts to Hack Reactor', 
     upvotes: 6,
     link: 'http://www.getcoding.hackreactor.com/makersquare/'
   },
   {
-    title: 'Font ligatures, helpful or annoying?', 
+    title: 'Fira-Code symbol ligatures, helpful or annoying?', 
     upvotes: -3
   },
 ];
