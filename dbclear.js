@@ -3,7 +3,7 @@ var database = db.db;
 var post = db.post;
 
 //drop previous table
-database.collections['posts'].drop(function(err) {
+database.collections['posts'].drop((err) => {
   if (err) {
     console.log('error dropping table');
   } else {
@@ -13,14 +13,25 @@ database.collections['posts'].drop(function(err) {
 
 //starter posts
 var posts = [
-    {title: 'Hack Reactor awards $1.3 million in scholarship funds', upvotes: 5},
-    {title: 'Makersquare brand changes to Hack Reactor', upvotes: 6},
-    {title: 'Font ligatures, helpful or annoying?', upvotes: -3},
+  {
+    title: 'Hack Reactor awards $1.3 million in scholarship funds',
+    upvotes: 5, 
+    link: 'http://www.hackreactor.com/scholarships/'
+  },
+  {
+    title: 'Makersquare brand changes to Hack Reactor', 
+    upvotes: 6,
+    link: 'http://www.getcoding.hackreactor.com/makersquare/'
+  },
+  {
+    title: 'Font ligatures, helpful or annoying?', 
+    upvotes: -3
+  },
 ];
 
 //populate db
 for (var i = 0; i < posts.length; i++) {
-  post.create(posts[i], function(error, doc) {
+  post.create(posts[i], (error, doc) => {
     if (error) {
       console.log('errored on populating starter posts: ', error);
     } else {

@@ -1,7 +1,6 @@
-Next up:
-put the static data on the server.
-
-
+Todo:
+- make posts post to db
+- upvotes should persist when incremented
 
 Stretch goals:
 - add link fixer functionality

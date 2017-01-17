@@ -12,7 +12,7 @@ var Schema = mongoose.Schema;
 
 //listen for db connection success or error
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
+db.once('open', () => {
   console.log('we are connected to mongoose');
 });
 
@@ -31,11 +31,36 @@ var Post = mongoose.model('Post', postSchema);
 app.use(express.static(__dirname));
 app.use(bodyParser.json());
 
+//listen for get request to populate client with posts on refresh
 app.get('/posts', (req, res) => {
   Post.find((err, posts) => {
     if (err) { return err; }
     res.send(posts);
     res.end();
+  });
+});
+
+app.post('/posts', (req, res) => {
+  Post.create(req.body, (error, doc) => {
+    if (error) {
+      console.log('errored on populating starter posts: ', error);
+    } else {
+      console.log('this is the doc: ', doc);
+    }
+  });
+});
+
+app.post('/upvote', (req, res) => {
+  Post.findOne(req.body, (err, doc) => {
+    // console.log('this is the doc: ', doc);
+    // console.log('this is the req body: ', req.body);
+    if (err) {
+      console.log('server: err on upvote - ', err);
+    } else {
+      doc.upvotes++;
+      doc.save();
+      console.log('server: success upvote - ', doc);
+    } 
   });
 });
 
