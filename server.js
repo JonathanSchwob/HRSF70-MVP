@@ -52,7 +52,6 @@ app.post('/posts', (req, res) => {
 
 app.post('/upvote', (req, res) => {
   Post.findOne({title: req.body.title}
-            req.body
   , (err, doc) => {
     // console.log('this is the doc: ', doc);
     // console.log('this is the req body: ', req.body);
