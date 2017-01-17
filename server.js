@@ -14,6 +14,7 @@ var Schema = mongoose.Schema;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
   console.log('we are connected to mongoose');
+  app.listen(4000, console.log('listening on port 4000'));
 });
 
 //create schema design
@@ -40,6 +41,7 @@ app.get('/posts', (req, res) => {
   });
 });
 
+//post users title and link
 app.post('/posts', (req, res) => {
   Post.create(req.body, (error, doc) => {
     if (error) {
@@ -51,6 +53,7 @@ app.post('/posts', (req, res) => {
   });
 });
 
+//finds the correct document in db and increments upvote
 app.post('/upvote', (req, res) => {
   Post.findOne({title: req.body.title}
   , (err, doc) => {
@@ -62,14 +65,14 @@ app.post('/upvote', (req, res) => {
       doc.save(function(err, updatedModel) {
         console.log('err', err);
         console.log('updated model', updatedModel);
-        res.status(200).send(updatedModel.upvotes.toString());
+        res.send(updatedModel);
       });
       console.log('server: success upvote - ', doc);
     } 
   });
 });
 
-app.listen(4000, console.log('listening on port 4000'));
+
 
 exports.db = db;
 exports.post = Post;

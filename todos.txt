@@ -1,10 +1,12 @@
 Todo:
 X make posts post to db
 X upvotes should persist when incremented
-- fix upvote bug
-- make it update without refresh
-- add downvote button
+X fix upvote bug
+X make it update without refresh
+- add about page to learn routing
+- add comments page to each post
 
 Stretch goals:
+- add downvote button
 - add link validation fixer functionality
 - add auth

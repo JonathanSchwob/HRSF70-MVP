@@ -38,10 +38,9 @@ app.controller('MainController', ($scope, $http) => {
   };
 
   $scope.incrementUpvotes = (post) => {
-    post.upvotes++;
-    
     console.log('post we want to update: ', post);
     $http.post('/upvote', post).then((res) => {
+      post.upvotes = res.data.upvotes;
       console.log('this is res.data: ', res.data);
     }, (err) => {
       if (err) {

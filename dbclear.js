@@ -21,7 +21,7 @@ var posts = [
   {
     title: 'Makersquare brand shifts to Hack Reactor', 
     upvotes: 6,
-    link: 'http://www.getcoding.hackreactor.com/makersquare/'
+    link: 'http://www.hackreactor.com/press-releases/hack-reactor-acquires-coding-school-makersquare'
   },
   {
     title: 'Fira-Code symbol ligatures, helpful or annoying?', 
