@@ -25,9 +25,11 @@ app.controller('MainController', ($scope, $http) => {
     };
     $scope.title = '';
     $scope.link = '';
+
     //give new post to db
     $http.post('/posts', postContents).then(function(res) {
       console.log('done posting the post, here it is: ', res);
+      $scope.posts.push(res.data);
     }, function(err) {
       if (err) {
         console.log('could not post, here is err: ', err);

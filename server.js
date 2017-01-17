@@ -45,6 +45,7 @@ app.post('/posts', (req, res) => {
     if (error) {
       console.log('errored on populating starter posts: ', error);
     } else {
+      res.send(req.body);
       console.log('this is the doc: ', doc);
     }
   });
@@ -53,8 +54,6 @@ app.post('/posts', (req, res) => {
 app.post('/upvote', (req, res) => {
   Post.findOne({title: req.body.title}
   , (err, doc) => {
-    // console.log('this is the doc: ', doc);
-    // console.log('this is the req body: ', req.body);
     if (err) {
       console.log('server: err on upvote - ', err);
     } else {
