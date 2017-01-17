@@ -40,6 +40,7 @@ app.controller('MainController', ($scope, $http) => {
     console.log('post we want to update: ', post);
     $http.post('/upvote', post).then((res) => {
       console.log('done incrementing post, here is res: ', res);
+      console.log('this is res.data: ', res.data);
     }, (err) => {
       if (err) {
         console.log('could not upvote, here is err: ', err);

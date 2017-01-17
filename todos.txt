@@ -1,6 +1,10 @@
 Todo:
-- make posts post to db
-- upvotes should persist when incremented
+X make posts post to db
+X upvotes should persist when incremented
+- fix upvote bug
+- make it update without refresh
+- add downvote button
 
 Stretch goals:
-- add link fixer functionality
+- add link validation fixer functionality
+- add auth

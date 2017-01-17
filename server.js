@@ -51,14 +51,21 @@ app.post('/posts', (req, res) => {
 });
 
 app.post('/upvote', (req, res) => {
-  Post.findOne(req.body, (err, doc) => {
+  Post.findOne({title: req.body.title}
+            req.body
+  , (err, doc) => {
     // console.log('this is the doc: ', doc);
     // console.log('this is the req body: ', req.body);
     if (err) {
       console.log('server: err on upvote - ', err);
     } else {
+      console.log('THE MODEL', doc);
       doc.upvotes++;
-      doc.save();
+      doc.save(function(err, updatedModel) {
+        console.log('err', err);
+        console.log('updated model', updatedModel);
+        res.status(200).send(updatedModel.upvotes.toString());
+      });
       console.log('server: success upvote - ', doc);
     } 
   });

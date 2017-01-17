@@ -28,7 +28,6 @@ var posts = [
     upvotes: -3
   },
 ];
-
 //populate db
 for (var i = 0; i < posts.length; i++) {
   post.create(posts[i], (error, doc) => {
