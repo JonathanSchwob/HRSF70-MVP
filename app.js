@@ -1,51 +1,23 @@
-var app = angular.module('reactorNews', []);
+angular.module('reactorNews', ['ui.router', 'posts'])
 
-app.controller('MainController', ($scope, $http) => {
-  $scope.posts = [];
+.config(function($stateProvider, $urlRouterProvider) {
+  console.log('hello from congi');
+  $urlRouterProvider.otherwise('/home');
 
-  //grabs data from db on refresh
-  $http.get('/posts').then((res) => {
-    $scope.posts = res.data;
-  }, (err) => {
-    if (err) {
-      console.log('this is the err on $http get: ', err);
-    }
-  });
-  
-  $scope.addPost = () => {
-    //doesn't allow user to submit empty posts
-    if (!$scope.title || $scope.title === '') {
-      return;
-    }
-    
-    var postContents = {
-      title: $scope.title,
-      link: $scope.link,
-      upvotes: 0
-    };
-    $scope.title = '';
-    $scope.link = '';
-
-    //give new post to db
-    $http.post('/posts', postContents).then(function(res) {
-      console.log('done posting the post, here it is: ', res);
-      $scope.posts.push(res.data);
-    }, function(err) {
-      if (err) {
-        console.log('could not post, here is err: ', err);
-      }
-    });
+  var mainState = {
+    name: 'posts',
+    url: '/home',
+    templateUrl: './main.html',
+    controller: 'MainController'
   };
 
-  $scope.incrementUpvotes = (post) => {
-    console.log('post we want to update: ', post);
-    $http.post('/upvote', post).then((res) => {
-      post.upvotes = res.data.upvotes;
-      console.log('this is res.data: ', res.data);
-    }, (err) => {
-      if (err) {
-        console.log('could not upvote, here is err: ', err);
-      }
-    });
+  var aboutState = {
+    name: 'about',
+    url: '/about',
+    templateUrl: './about.html',
+    controller: 'aboutController'
   };
+
+  $stateProvider.state(mainState);
+  $stateProvider.state(aboutState);
 });

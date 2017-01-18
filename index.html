@@ -2,34 +2,23 @@
   <head>
     <title>Reactor News</title>
     <script src="./node_modules/angular/angular.js"></script>
+    <script src="./node_modules/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="app.js"></script>
+    <script src="posts.js"></script>
+    <script src="about.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
   </head>
-  <body ng-app="reactorNews" ng-controller="MainController">
+  <body ng-app="reactorNews">
     <div class="logoContainer">
       <img src="logo.png" class="align logo">
-      <h1 class="inline">Reactor News</h1> 
+      <h1 class="inline">Reactor News</h1>    
     </div>
-    <br>
-    <font face="proxima nova">
-    <div ng-repeat="post in posts | orderBy:'-upvotes'">
-      <span ng-click="incrementUpvotes(post)"><img src="thumb.jpeg" class="alignthumb"></span>
-      <a ng-show="post.link" href="{{post.link}}">
-        {{post.title}} 
-      </a>
-      <span ng-hide="post.link">
-        {{post.title}}
-      </span>
-      - upvotes: {{post.upvotes}}
+    <div class='link-container'>
+      <a ui-sref="posts" class="links"> Posts</a>
+      <a ui-sref="about" class="links"> About</a>
     </div>
-    <br>
-    <form ng-submit="addPost()">
-      <input type="text" placeholder="Title" ng-model="title"></input>
-      <br>
-      <input type="text" placeholder="Optional Link" ng-model="link"></input>
-      <button type="submit">Post</button>
-    </form>
-    </font>
+    
+    <div ui-view></div>
   </body>
 </html>
