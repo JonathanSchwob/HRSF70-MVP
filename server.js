@@ -72,6 +72,24 @@ app.post('/upvote', (req, res) => {
   });
 });
 
+app.post('/downvote', (req, res) => {
+  Post.findOne({title: req.body.title}
+  , (err, doc) => {
+    if (err) {
+      console.log('server: err on upvote - ', err);
+    } else {
+      console.log('THE MODEL', doc);
+      doc.upvotes--;
+      doc.save(function(err, updatedModel) {
+        console.log('err', err);
+        console.log('updated model', updatedModel);
+        res.send(updatedModel);
+      });
+      console.log('server: success upvote - ', doc);
+    } 
+  });
+});
+
 
 
 exports.db = db;

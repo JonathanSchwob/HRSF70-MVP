@@ -49,4 +49,16 @@ angular.module('posts', [])
       }
     });
   };
+
+  $scope.decrementUpvotes = (post) => {
+    console.log('post we want to update: ', post);
+    $http.post('/downvote', post).then((res) => {
+      post.upvotes = res.data.upvotes;
+      console.log('this is res.data: ', res.data);
+    }, (err) => {
+      if (err) {
+        console.log('could not upvote, here is err: ', err);
+      }
+    });
+  };
 });
