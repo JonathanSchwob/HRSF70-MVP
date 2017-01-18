@@ -43,6 +43,8 @@ app.get('/posts', (req, res) => {
 
 //post users title and link
 app.post('/posts', (req, res) => {
+  // let options = Object.assign({}, req.body);
+  // options.uuid = require('shortid').generate();
   Post.create(req.body, (error, doc) => {
     if (error) {
       console.log('errored on populating starter posts: ', error);
